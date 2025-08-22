@@ -1,5 +1,19 @@
 #include <iostream>
 using namespace std;
+/*
+int fact(int n);
+int ncr(int n, int r);
+*/
+
+int fact(int);
+int ncr(int, int);
+
+
+int main() {
+	cout << ncr(5, 2) << endl;
+
+	return 0;
+}
 
 int fact(int n) {
 
@@ -21,15 +35,6 @@ int ncr(int n, int r) {
 
 	return ans;
 }
-
-int main() {
-
-	cout << ncr(5, 2) << endl;
-
-	return 0;
-}
-
-
 
 
 
