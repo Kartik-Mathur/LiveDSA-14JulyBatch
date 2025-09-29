@@ -1,0 +1,26 @@
+# Ignore executables (with or without extension)
+myprogram
+*.out
+*.exe
+
+# Object files
+*.o
+*.obj
+
+# Precompiled headers
+*.gch
+
+# macOS system files
+.DS_Store
+
+# Xcode-related (if using Xcode)
+*.xcworkspace
+*.xcodeproj
+*.xcuser*
+*.dSYM/
+
+# CMake or other build directories
+/build/
+/bin/
+/lib/
+/dist/
