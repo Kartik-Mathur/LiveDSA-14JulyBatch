@@ -9,36 +9,44 @@ private:
 public:
 	char *name;
 	int model;
+	const int tyres;
+	static int cnt; // It belongs to class and not object that we create with class Car
 
 	// Default CONSTRUCTOR
-	Car() {
-		name = NULL;
+	Car(): tyres(4), name(NULL) {
+		// name = NULL;
+		// tyres = 4; // Assignment is not possible for constant buckets
+		cnt++;
 	}
 
 	// Parameterized Constructor
-	Car(char *n, int p, int m) {
+	Car(char *n, int p, int m): tyres(4) {
 		name = new char[strlen(n) + 1];
 		strcpy(name, n);
 		price = p;
 		model = m;
+		cnt++;
 	}
 
 	// Parameterized Constructor-2
-	Car(int p, int m, char *n) {
+	Car(int p, int m, char *n): tyres(4) {
 		name = new char[strlen(n) + 1];
 		strcpy(name, n);
 		price = p;
 		model = m;
+		cnt++;
 	}
 
 	// Copy Constructor
 	// Car D = A;
-	// Car(Car &X) {
-	// 	name = new char[strlen(X.name) + 1];
-	// 	strcpy(name, X.name);
-	// 	price = X.price;
-	// 	model = X.model;
-	// }
+	Car(Car &X): tyres(4) {
+		name = new char[strlen(X.name) + 1];
+		strcpy(name, X.name);
+		// name = X.name;
+		price = X.price;
+		model = X.model;
+		cnt++;
+	}
 
 	// Copy Assignment Operator
 	// D = A;
@@ -75,8 +83,18 @@ public:
 		name = new char[strlen(n) + 1];
 		strcpy(name, n);
 	}
+
+	~Car() {
+		// cout << "Calling destructor : " << name << endl;
+		// cout << "Current Car count: " << cnt << endl;
+		cnt--;
+	}
 };
 //////////////////////////////////// BLUE-PRINT ////////////////////////////////////
+
+// Initialising the static variable
+int Car::cnt = 0;
+
 int main() {
 
 	Car A; // A is an object of class Car
@@ -87,29 +105,25 @@ int main() {
 	A.setPrice(175);
 	A.model = 2020;
 
-	char carName[] = "Audi";
-	Car B(carName, 20, 2022);
-	Car C(30, 2024, "Maruti");
-	// Copy Constructor: To create new car object using existing car
-	// 1. Car A = B;
-	// 2. Car A(B);
-	Car D = A;
+	Car B = A;
+	Car C = B;
 
-	// Copy Assignment Operator
-	// D = C;
-	/*
-	Car B;
-	strcpy(B.name, "Audi");
-	B.price = 20;
-	B.model = 2022;
-	*/
-	// D.price = 100;
-	// cout << A.price << endl;
-	cout << A.getPrice() << endl;
+	C.name[0] = 'X';
+
 	A.print();
 	B.print();
 	C.print();
-	D.print();
+
+	cout << "Total Cars: " << A.cnt << endl;
+	cout << "Total Cars: " << Car::cnt << endl;
+
+	// Creating a car dynamically
+	int *a = new int;
+	float *f = new float;
+	Car* D  = new Car;
+	cout << "Total Cars: " << Car::cnt << endl;
+	delete D;
+	cout << "Total Cars: " << Car::cnt << endl;
 
 
 	return 0;

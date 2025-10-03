@@ -33,12 +33,13 @@ public:
 
 	// Copy Constructor
 	// Car D = A;
-	// Car(Car &X) {
-	// 	name = new char[strlen(X.name) + 1];
-	// 	strcpy(name, X.name);
-	// 	price = X.price;
-	// 	model = X.model;
-	// }
+	Car(Car &X) {
+		name = new char[strlen(X.name) + 1];
+		strcpy(name, X.name);
+		// name = X.name;
+		price = X.price;
+		model = X.model;
+	}
 
 	// Copy Assignment Operator
 	// D = A;
@@ -87,29 +88,14 @@ int main() {
 	A.setPrice(175);
 	A.model = 2020;
 
-	char carName[] = "Audi";
-	Car B(carName, 20, 2022);
-	Car C(30, 2024, "Maruti");
-	// Copy Constructor: To create new car object using existing car
-	// 1. Car A = B;
-	// 2. Car A(B);
-	Car D = A;
+	Car B = A;
+	Car C = B;
 
-	// Copy Assignment Operator
-	// D = C;
-	/*
-	Car B;
-	strcpy(B.name, "Audi");
-	B.price = 20;
-	B.model = 2022;
-	*/
-	// D.price = 100;
-	// cout << A.price << endl;
-	cout << A.getPrice() << endl;
+	C.name[0] = 'X';
+
 	A.print();
 	B.print();
 	C.print();
-	D.print();
 
 
 	return 0;
