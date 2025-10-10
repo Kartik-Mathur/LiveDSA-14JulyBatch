@@ -2,7 +2,7 @@ class Solution {
 public:
 
 	bool isPossible(vector<int>& piles, int h, int mid) {
-		int totalHourUsed = 0;
+		long long totalHourUsed = 0;
 		for (int i = 0; i < piles.size(); ++i)
 		{
 			totalHourUsed += (piles[i] / mid);
