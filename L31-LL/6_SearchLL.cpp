@@ -1,0 +1,102 @@
+#include <iostream>
+using namespace std;
+
+class node {
+public:
+	int data;
+	node * next;
+
+	node(int d) {
+		data = d;
+		next = NULL;
+	}
+};
+
+void insertAtEnd(node* &h, node* &t, int d) {
+	if (h == NULL) {
+		node* n = new node(d);
+		h = t = n;
+	}
+	else {
+		node* n = new node(d);
+		t->next = n;
+		t = n;
+	}
+}
+
+int lengthLL(node* h) {
+	int cnt = 0;
+	while (h != NULL) {
+		cnt++;
+		h = h->next;
+	}
+
+	return cnt;
+}
+
+void printLL(node* h) {
+	while (h != NULL) {
+		cout << h->data << "-->";
+		h = h->next;
+	}
+	cout << "NULL\n";
+}
+
+node* findKeyLL(node* head, int key) {
+	if (head == NULL) return NULL;
+
+	if (head -> data == key) {
+		return head;
+	}
+
+	return findKeyLL(head->next, key);
+
+	// node* chotaAns = findKeyLL(head->next, key);
+	// if (chotaAns == NULL) return NULL;
+	// else return chotaAns;
+}
+
+
+int main() {
+
+	node* head = NULL, *tail = NULL;
+	insertAtEnd(head, tail, 11);
+	insertAtEnd(head, tail, 2);
+	insertAtEnd(head, tail, 31);
+	insertAtEnd(head, tail, 14);
+	insertAtEnd(head, tail, -1);
+	insertAtEnd(head, tail, 3);
+	insertAtEnd(head, tail, 5);
+
+
+	printLL(head);
+	node* ans = findKeyLL(head, 14);
+
+	if (ans == NULL) {
+		cout << "Key not found\n";
+	}
+	else {
+		cout << "Found " << ans->data << endl;
+	}
+
+
+
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
