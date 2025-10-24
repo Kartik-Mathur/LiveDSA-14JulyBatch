@@ -12,7 +12,6 @@ public:
 };
 
 
-
 template<typename T>
 class Stack {
 	node<T>* head;
